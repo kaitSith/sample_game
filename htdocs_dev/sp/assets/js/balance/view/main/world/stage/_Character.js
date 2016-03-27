@@ -5,17 +5,23 @@ let model = ModelTest.instance;
 class Character{
   constructor(){
     var me = this;
+
+    window.addEventListener('SET_CHARACTER', function(){
+        me.setCharacter();
+    }, false);
    
-    window.addEventListener('ADD_CHARACTER', function(){
-        me.addCharacter();
+    window.addEventListener('GET_CHARACTER', function(){
+        me.getCharacter();
     }, false);
   }
-  getInstance(){
-    var Bodies = Matter.Bodies;
-    this.bodies = Bodies.rectangle(450, 50, 80, 80);
-    return this.bodies;
+  setCharacter(){
+    var _engine = Engine.getInstance();
+    var _position = model.getMousePosition();
+    var _context = Engine.getCxt();
+    _context.rect(_position.mouse.position.x, _position.mouse.position.y, 80, 80);
+    _context.stroke();
   }
-  addCharacter(){
+  getCharacter(){
     var World = Matter.World,
         Bodies = Matter.Bodies;
     

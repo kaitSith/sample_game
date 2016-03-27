@@ -10,7 +10,8 @@ class ModelTest{
     this.char_flg = false;
   	this.events = {
   	  COUNT_UP: 'COUNT_UP',
-      ADD_CHARACTER: 'ADD_CHARACTER'
+      SET_CHARACTER: 'SET_CHARACTER',
+      GET_CHARACTER: 'GET_CHARACTER'
   	};
   	if(enforcer != singletonEnforcer) throw 'Cannot construct singleton';
   }
@@ -26,20 +27,33 @@ class ModelTest{
   	var ev = new Event(me.events.COUNT_UP);
   	window.dispatchEvent(ev);
   }
-  addCharacter(e){
+  setCharacter(e){
     var me = this;
-    me.position = e;
+    me.setMousePosition(e);
     if(me.char_flg){
-      var ev = new Event(me.events.ADD_CHARACTER);
-      window.dispatchEvent(ev);
+      me.dispatch(me.events.SET_CHARACTER);
+    }
+  }
+  getCharacter(e){
+    var me = this;
+    me.setMousePosition(e);
+    if(me.char_flg){
+      me.dispatch(me.events.GET_CHARACTER);
       me.char_flg = false;  
     }
+  }
+  setMousePosition(e){
+    this.position = e;
   }
   getMousePosition(){
     return this.position;
   }
   getNextCharacter(){
     this.char_flg = true;
+  }
+  dispatch(event){
+    var ev = new Event(event);
+    window.dispatchEvent(ev);
   }
 }
 

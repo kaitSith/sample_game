@@ -9,10 +9,10 @@ class Mouse{
     this.mouseConstraint = MouseConstraint.create(Engine.getInstance());
     
     Events.on(this.mouseConstraint, 'mousemove', function(e){
-      model.addCharacter(e);
+      //model.setCharacter(e);
     });
     Events.on(this.mouseConstraint, 'mouseup', function(e){
-      //model.addCharacter(e);
+      model.getCharacter(e);
     });
   }
   getInstance(){

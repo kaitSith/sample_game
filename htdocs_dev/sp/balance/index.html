@@ -3,10 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <title><%= commonTitle %></title>
+  <style>
+    #world{
+      position: relative;
+    }
+    #nc{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 100px;
+      background: #f00;
+    }
+  </style>
 </head>
 <body>
   <main>
-    <div id="world"></div>
+    <div id="world">
+      <div id="nc"></div>
+    </div>
   </main>
   <button class="btn">ボタン</button>
   <script src="../assets/shared/js/matter.min.js"></script>

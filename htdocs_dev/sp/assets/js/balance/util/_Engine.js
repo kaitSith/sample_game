@@ -1,6 +1,11 @@
 var Engine = {
   init: Matter.Engine,
   container: document.getElementById('world'),
+  getCxt: function(){
+    var me = this;
+    var canvas = me.container;
+    return canvas.getContext('2d');    
+  },
   instance: null,
   getInstance: function(){
     var me = this;
