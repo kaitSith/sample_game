@@ -28,6 +28,7 @@ class Character{
     var _engine = Engine.getInstance();
     var _position = model.getMousePosition();
     var _character = Bodies.rectangle(_position.mouse.position.x, _position.mouse.position.y, 80, 80);
+    model.addCharacter(_character);
     
     World.add(_engine.world, [_character]);
   }

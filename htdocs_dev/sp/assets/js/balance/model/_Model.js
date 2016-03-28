@@ -3,9 +3,7 @@ let singletonEnforcer = Symbol();
 
 class ModelTest{
   constructor(enforcer){
-  	this.val = {
-  	  NUM: 0
-  	};
+  	this.count = 0;
     this.position = null;
     this.char_flg = false;
   	this.events = {
@@ -13,6 +11,7 @@ class ModelTest{
       SET_CHARACTER: 'SET_CHARACTER',
       GET_CHARACTER: 'GET_CHARACTER'
   	};
+    this.character = [];
   	if(enforcer != singletonEnforcer) throw 'Cannot construct singleton';
   }
   static get instance(){
@@ -21,11 +20,11 @@ class ModelTest{
   	}
   	return this[singleton];
   }
-  setCount(n){
+  countUp(){
     var me = this;
-    me.val.NUM += 1;
-  	var ev = new Event(me.events.COUNT_UP);
-  	window.dispatchEvent(ev);
+    me.count++;
+    console.log(me.count);
+    me.dispatch(me.events.COUNT_UP);
   }
   setCharacter(e){
     var me = this;
@@ -40,6 +39,20 @@ class ModelTest{
     if(me.char_flg){
       me.dispatch(me.events.GET_CHARACTER);
       me.char_flg = false;  
+    }
+  }
+  addCharacter(obj){
+    var me = this;
+    me.character.push(obj);
+  }
+  delCharacter(){
+    var me = this;
+    var Body = Matter.Body;
+    
+    if(me.character.length > 0){
+      Body.setStatic(me.character[0], true); 
+      me.character.splice(0, 1);
+      me.countUp();
     }
   }
   setMousePosition(e){
