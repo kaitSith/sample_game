@@ -26,6 +26,9 @@ class ModelTest{
     console.log(me.count);
     me.dispatch(me.events.COUNT_UP);
   }
+  getCount(){
+    return this.count;
+  }
   setCharacter(e){
     var me = this;
     me.setMousePosition(e);
@@ -50,7 +53,7 @@ class ModelTest{
     var Body = Matter.Body;
     
     if(me.character.length > 0){
-      Body.setStatic(me.character[0], true); 
+      //Body.setStatic(me.character[0], true); 
       me.character.splice(0, 1);
       me.countUp();
     }

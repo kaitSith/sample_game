@@ -1,28 +1,15 @@
 import ModelTest from '../../../model/_Model';
 let model = ModelTest.instance;
 
-class Btn{
-  constructor(o){
-  	this.val = {
-  	  NUM: 1111
-  	};
-    this.o = document.getElementsByClassName(o)[0];
-    this.init();
-  }
-  init(){
-  	var me = this;
-    me.o.addEventListener('click', function(){
-      model.setCount(me.val.NUM);
-    }, false);
-    me.o.addEventListener('touchend', function(){
-      model.setCount(me.val.NUM);
-    }, false);
+class Count{
+  constructor(elm){
+    var me = this;
+  	this.elm = document.getElementById(elm);
 
-    window.addEventListener(model.events.COUNT_UP, function(){
-      alert('count up');
-      console.log(model.val.NUM);
+    window.addEventListener('COUNT_UP', function(){
+      me.elm.innerHTML = model.getCount();
     }, false);
   }
 }
 
-export default Btn;
+export default Count;
